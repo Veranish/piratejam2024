@@ -49,16 +49,7 @@ public class PlayerMove : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(Movement);
         }
         
-        if(Input.GetMouseButtonDown(0)) 
-        {
-            var ray = new Ray(this.transform.position, this.transform.forward);
-            RaycastHit hit;
-            if(Physics.Raycast(ray, out hit, 10))
-            {
-                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-                if (interactable != null) { interactable.Interact(this.gameObject); }
-            }
-        }
+        
 
     }
 
