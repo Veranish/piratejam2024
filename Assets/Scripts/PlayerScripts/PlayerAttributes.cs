@@ -30,8 +30,9 @@ public class PlayerAttributes : MonoBehaviour
                 IInteractable interactable = hit.collider.GetComponent<IInteractable>();
                 if (interactable != null) { 
                     interactable.Interact(this.gameObject);
-                    updateLightValue(LampLightCost);
-                    updateLightAesthetic();
+                    //TODO: Make it check what it's interacting with.
+                    //updateLightValue(LampLightCost);
+                    //updateLightAesthetic();
                 }
             }
         }
