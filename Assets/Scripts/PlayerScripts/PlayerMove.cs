@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour
         //whaaaat if we normalized the vector instead to 1 hmmmmmm
         // Nah normalizing vectors causes weird behavior
         Vector3 Movement = cam.transform.right * Horizontal + VertVec * Vertical;
-        Movement.y = 0f;
+        //Movement.y = 0f;
         //Movement = Movement.normalized * Speed;
         if (Movement.sqrMagnitude > 0.0001f)
         {
