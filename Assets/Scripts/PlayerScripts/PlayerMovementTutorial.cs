@@ -24,7 +24,7 @@ public class PlayerMovementTutorial : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
 
     public Transform orientation;
 
@@ -39,8 +39,11 @@ public class PlayerMovementTutorial : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
+        Cursor.lockState = CursorLockMode.Locked;
         readyToJump = true;
+
+
+
     }
 
     private void Update()
@@ -84,12 +87,19 @@ public class PlayerMovementTutorial : MonoBehaviour
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
+
         // on ground
-        if(grounded)
+        if (grounded)
+        {
+
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            moveDirection.y = 0;
+            transform.rotation = Quaternion.LookRotation(moveDirection);
+            //Rotation isn't working yet for some reason
+        }
 
         // in air
-        else if(!grounded)
+        else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }
 

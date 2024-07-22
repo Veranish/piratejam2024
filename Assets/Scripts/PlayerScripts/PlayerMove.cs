@@ -44,7 +44,6 @@ public class PlayerMove : MonoBehaviour
         //Movement = Movement.normalized * Speed;
         if (Movement.sqrMagnitude > 0.0001f)
         {
-            
             Controller.Move(Movement);
             transform.rotation = Quaternion.LookRotation(Movement);
         }
