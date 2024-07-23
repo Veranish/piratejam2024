@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
+    public float anglePerSecond; //How many angles we want the player to be able to rotate per second.
     bool readyToJump;
 
     [HideInInspector] public float walkSpeed;
@@ -102,7 +103,11 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection.sqrMagnitude > 0.0001f)
         {
             moveDirection.y = 0;
-            transform.rotation = Quaternion.LookRotation(moveDirection);
+            //transform.rotation = Quaternion.LookRotation(moveDirection); // instant snap
+            Debug.Log("New Movement:" + moveDirection);
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, moveDirection, anglePerSecond * Time.deltaTime, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDirection);
+            Debug.Log("New rotation:" + newDirection);
         }
 
     }
