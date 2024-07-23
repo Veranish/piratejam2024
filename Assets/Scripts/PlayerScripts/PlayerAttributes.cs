@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttributes : MonoBehaviour
+public class PlayerAttributes : MonoBehaviour, IDamageable
 {
     [Header("Light and Lamp properties")]
     public int LightLevel; //Functions as both light and HP.
-    public int LampLightCost; //How much lighting a lamp will cost in lamp/hp value
     bool canShoot; //if true, player is able to shoot.
     public Light lampLight; //Should be tied to the Light object in the player's lamp.
 
@@ -15,7 +14,7 @@ public class PlayerAttributes : MonoBehaviour
     void Start()
     {
         canShoot = true;
-        updateLightAesthetic();
+        UpdateLightAesthetic();
     }
 
     // Update is called once per frame
@@ -30,6 +29,7 @@ public class PlayerAttributes : MonoBehaviour
                 IInteractable interactable = hit.collider.GetComponent<IInteractable>();
                 if (interactable != null) { 
                     interactable.Interact(this.gameObject);
+
                     //TODO: Make it check what it's interacting with.
                     //updateLightValue(LampLightCost);
                     //updateLightAesthetic();
@@ -44,16 +44,24 @@ public class PlayerAttributes : MonoBehaviour
         }
     }
 
-    public bool updateLightValue(int deltaLight)//If it's a hurt, this should be negative. Returns true if dead.
+    public void Damage(int damageToDeal)
     {
-        LightLevel += deltaLight;
-        if(LightLevel < 0 ) { return true; }//Returns true if player is under 0, and thus, dead.
+        LightLevel -= damageToDeal;
+        UpdateLightAesthetic();
+        DeathCheck();
+        Debug.Log("Hurt! For: " + damageToDeal);
+    }
 
-
+    bool DeathCheck() //Returns true if light level is at death levels
+    {
+        if(LightLevel<= 0)
+        { return true; }
         return false;
     }
 
-    void updateLightAesthetic()
+ 
+
+    void UpdateLightAesthetic()
     {
         lampLight.intensity = (float)LightLevel / 18; //divided by 20 due to 20 being the max, so, normalized.
         if(LightLevel < 10) { lampLight.color = Color.red; }
