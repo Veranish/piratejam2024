@@ -4,7 +4,7 @@ using System.Collections;
 //Updated version from id0 (Bugfixes)
 //further updated by user Veranish (me! I changed the camera rotation
 //                                  to be mouse based, and smoothed a couple of things out).
-public class Dep_PlayerCamera : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
 
     [Header("Camera Properties")]
