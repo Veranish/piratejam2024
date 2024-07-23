@@ -8,6 +8,7 @@ public class LightpostScript : MonoBehaviour, IInteractable
     public Light myLight;
     public float litIntensity = 1; //Initial 1, configurable in editor. Range is 0-8.
     // Start is called before the first frame update
+    
     void Start()
     {
         if (isLit) { lightLamp(); }
