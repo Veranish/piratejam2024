@@ -49,7 +49,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
         LightLevel -= damageToDeal;
         UpdateLightAesthetic();
         DeathCheck();
-        Debug.Log("Hurt! For: " + damageToDeal);
+        //Debug.Log("Hurt! For: " + damageToDeal);
     }
 
     bool DeathCheck() //Returns true if light level is at death levels
