@@ -104,10 +104,10 @@ public class PlayerMovement : MonoBehaviour
         {
             moveDirection.y = 0;
             //transform.rotation = Quaternion.LookRotation(moveDirection); // instant snap
-            Debug.Log("New Movement:" + moveDirection);
+            
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, moveDirection, anglePerSecond * Time.deltaTime, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
-            Debug.Log("New rotation:" + newDirection);
+            
         }
 
     }
