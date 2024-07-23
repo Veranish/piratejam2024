@@ -13,12 +13,17 @@ public class PlayerMove : MonoBehaviour
     public Transform cam; //Used to determine left, right, and forward vectors for input.
     public float crossPBuffer = 0.2f; //Used to determine when movement vector changes from forward to up. 
 
+    public PlayerAudioClips AudioClips;
+
+    private AudioPlayer AudioPlayer;
+    private PlayHandle PlayHandle;
 
     // Start is called before the first frame update
     void Start()
     {
 
         Controller = GetComponent<CharacterController>();
+        AudioPlayer = GetComponent<AudioPlayer>();
 
     }
 
@@ -44,13 +49,25 @@ public class PlayerMove : MonoBehaviour
         //Movement = Movement.normalized * Speed;
         if (Movement.sqrMagnitude > 0.0001f)
         {
-            
+
             Controller.Move(Movement);
             transform.rotation = Quaternion.LookRotation(Movement);
         }
-        
-        
 
+
+
+        if (Movement.sqrMagnitude > 0)
+        {
+            if (PlayHandle == null)
+            {
+                PlayHandle = AudioPlayer.PlaySoundAtInterval(AudioClips.RunningClip, 0.5f);
+            }
+        }
+        else if (PlayHandle != null)
+        {
+            PlayHandle.Stop = true;
+            PlayHandle = null;
+        }
     }
 
 }

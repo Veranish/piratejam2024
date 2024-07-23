@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: RunningGravel
+  m_EditorClassIdentifier: Assembly-CSharp::AudioContainer_Random
+  Variants:
+  - {fileID: 8300000, guid: f0d1c65b73f70a64184fbcffc0dc3966, type: 3}
+  - {fileID: 8300000, guid: e97b812e7bf82a346aca76963cf784d0, type: 3}
+  - {fileID: 8300000, guid: addadfc5e4d07f9419bea0de36e5635a, type: 3}
+  - {fileID: 8300000, guid: dbb7c4978dfd11d4eb01bdeed38450eb, type: 3}

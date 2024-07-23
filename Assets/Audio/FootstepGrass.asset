@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: FootstepGrass
+  m_EditorClassIdentifier: Assembly-CSharp::AudioContainer_Random
+  Variants:
+  - {fileID: 8300000, guid: af6a3554e12803f41b0d0200b2927bb5, type: 3}
+  - {fileID: 8300000, guid: 9a80e1ab4692fc04caec379e18b31ee3, type: 3}
+  - {fileID: 8300000, guid: c5cc74d6c2a18094e8d3ae04e8e3a300, type: 3}
+  - {fileID: 8300000, guid: ceb4d4532a67a4a40be860ded7deeaf3, type: 3}
+  - {fileID: 8300000, guid: f8d43a0dd14a4f446b9a2ca820322222, type: 3}
+  - {fileID: 8300000, guid: c7c3c81017f64054ab8bca5ddb009f2a, type: 3}
