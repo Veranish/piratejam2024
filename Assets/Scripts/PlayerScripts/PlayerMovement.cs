@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PlayerMovementTutorial : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
@@ -41,9 +41,6 @@ public class PlayerMovementTutorial : MonoBehaviour
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
         readyToJump = true;
-
-
-
     }
 
     private void Update()
@@ -88,19 +85,26 @@ public class PlayerMovementTutorial : MonoBehaviour
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
 
+
         // on ground
         if (grounded)
         {
-
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-            moveDirection.y = 0;
-            transform.rotation = Quaternion.LookRotation(moveDirection);
-            //Rotation isn't working yet for some reason
         }
 
         // in air
         else if (!grounded)
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
+
+        // Veranish code to fix random rotations from small values
+        if (moveDirection.sqrMagnitude > 0.0001f)
+        {
+            moveDirection.y = 0;
+            transform.rotation = Quaternion.LookRotation(moveDirection);
+        }
+
     }
 
     private void SpeedControl()
