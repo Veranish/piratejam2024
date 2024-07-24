@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     public PlayerAudioClips AudioClips;
 
     private AudioPlayer AudioPlayer;
-    private PlayHandle PlayHandle;
+    private AudioPlayHandle PlayHandle;
 
     // Start is called before the first frame update
     void Start()
