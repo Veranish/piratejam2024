@@ -7,12 +7,13 @@ public class GameState : MonoBehaviour
     public GameObject playerRef;
     public GameObject carriageRef;
     // Start is called before the first frame update
+    public ShadowScript[] ShadowList; // List of shadows. 
 
     public bool[] litLamps; //Keeps track of how many lamps are lit.
 
     void Start()
     {
-        
+        //Setup the level
     }
 
     // Update is called once per frame
@@ -23,15 +24,16 @@ public class GameState : MonoBehaviour
 
     void SpawnShadows()
     {
-
+        //Iterate through a list of spawns, find closest to the player?
+        //Or carriage itself has shadows that spawn along it? 
     }
 
-    void CarriageArrived()
+    public void CarriageArrived()
     {
 
     }
 
-    void GameOver()
+    public void GameOver()
     {
 
     }
