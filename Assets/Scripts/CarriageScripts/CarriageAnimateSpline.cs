@@ -1,47 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Splines;
 
 public class CarriageAnimateSpline : MonoBehaviour, IInteractable
 {
     bool isMoving;
+
     public SplineAnimate mySplineA;
-    // Start is called before the first frame update
+
+    public SphereCollider playerTooFarAwayCollider;
+
     void Start()
     {
         isMoving = false;
-
-        //GetComponent<SplineAnimate>().Stop();
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    void startMove()
+    void StartMove()
     {
         isMoving = true;
         mySplineA.Play();
     }
-    void stopMove()
+
+    void StopMove()
     {
         isMoving = false;
-        //if(GetComponent<SplineAnimate>().isPlaying())
-        {
-            mySplineA.Pause();
-        }
+        mySplineA.Pause();
     }
 
     public void Interact(GameObject interactor)
     {
         if (!isMoving)
         {
-            startMove();
+            StartMove();
         }
-        else { stopMove(); }
+        else
+        {
+            StopMove();
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerAttributes>() is not null)
+        {
+            StopMove();
+        }
     }
 }
