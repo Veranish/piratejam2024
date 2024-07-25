@@ -1038,7 +1038,7 @@ MonoBehaviour:
   LightLevel: 20
   lampLight: {fileID: 8390171246980473428}
   itemCarried: {fileID: 0}
-  carryPoint: {fileID: 0}
+  carryPoint: {fileID: 6932595914330460948}
 --- !u!114 &7863675366991807960
 MonoBehaviour:
   m_ObjectHideFlags: 0
