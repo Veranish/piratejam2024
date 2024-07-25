@@ -631,6 +631,37 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 2370327335396831498}
+--- !u!1 &3053015697848516677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6932595914330460948}
+  m_Layer: 0
+  m_Name: CarryPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6932595914330460948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3053015697848516677}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.44, z: 1.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4745594169038425710}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3233419727863770997
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,6 +921,7 @@ Transform:
   m_Children:
   - {fileID: 5066147467532929189}
   - {fileID: 4653534906023130265}
+  - {fileID: 6932595914330460948}
   m_Father: {fileID: 9011201195248193185}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5056314261530611863
@@ -1005,6 +1037,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LightLevel: 20
   lampLight: {fileID: 8390171246980473428}
+  itemCarried: {fileID: 0}
+  carryPoint: {fileID: 6932595914330460948}
 --- !u!114 &7863675366991807960
 MonoBehaviour:
   m_ObjectHideFlags: 0

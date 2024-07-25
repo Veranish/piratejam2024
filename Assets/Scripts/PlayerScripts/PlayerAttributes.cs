@@ -6,15 +6,23 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 {
     [Header("Light and Lamp properties")]
     public int LightLevel; //Functions as both light and HP.
-    bool canShoot; //if true, player is able to shoot.
+    
     public Light lampLight; //Should be tied to the Light object in the player's lamp.
 
+    [Header("Item and related attributes")]
+    bool carryingItem;
+    public GameObject itemCarried; // The resource that the player is carrying.
+    public Transform carryPoint; //Where objects will be carried in physical space.
+
+    [Header("Abilities")]
+    bool canShoot; //if true, player is able to shoot.
 
     // Start is called before the first frame update
     void Start()
     {
         canShoot = true;
         UpdateLightAesthetic();
+        carryingItem = false;
     }
 
     // Update is called once per frame
@@ -22,17 +30,26 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var ray = new Ray(this.transform.position, this.transform.forward);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 10))
+            if (carryingItem)
             {
-                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-                if (interactable != null) { 
-                    interactable.Interact(this.gameObject);
+                DropItem();
+            }
+            else
+            {
+                var ray = new Ray(this.transform.position, this.transform.forward);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 10))
+                {
+                    IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+                    if (interactable != null)
+                    {
 
-                    //TODO: Make it check what it's interacting with.
-                    //updateLightValue(LampLightCost);
-                    //updateLightAesthetic();
+                        interactable.Interact(this.gameObject);
+
+                        //TODO: Make it check what it's interacting with.
+                        //updateLightValue(LampLightCost);
+                        //updateLightAesthetic();
+                    }
                 }
             }
         }
@@ -68,6 +85,35 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
         else if(LightLevel > 10) { lampLight.color = Color.yellow; }
     }
 
+    //Called by a resource being interacted with. Returns true if successful, false if not.
+    public bool TryPickUpItem(GameObject newItemGO)
+    {
+        if (itemCarried == null)
+        {
+            Debug.Log("Carrying item");
+            itemCarried = newItemGO;
+            itemCarried.transform.parent = carryPoint;
+            itemCarried.transform.position = carryPoint.position;
+            itemCarried.GetComponent<Rigidbody>().detectCollisions = false;
+            itemCarried.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+            itemCarried.GetComponent<Rigidbody>().freezeRotation = true;
+            itemCarried.GetComponent<Rigidbody>().useGravity = false;
+            carryingItem = true;
+            
+            return true;
+        }
+        return false;
+    }
 
+    public void DropItem()
+    {
+        itemCarried.transform.parent = null;
+        itemCarried.GetComponent<Rigidbody>().detectCollisions = true;
+        itemCarried.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        itemCarried.GetComponent<Rigidbody>().freezeRotation = false;
+        itemCarried.GetComponent<Rigidbody>().useGravity = true;
+        carryingItem = false;
+        itemCarried = null;
+    }
 
 }

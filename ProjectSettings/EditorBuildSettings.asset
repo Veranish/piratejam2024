@@ -5,7 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: 60fd980464d21e241a75b3079f097c89
+  - enabled: 1
+    path: Assets/Scenes/Veranish_DevScene.unity
+    guid: eff6b9976778e6940b36afa0d973d810
+  - enabled: 1
+    path: Assets/Scenes/JDG_DevScene.unity
+    guid: 93031454d88cbe94b98cd907f36bb788
+  - enabled: 1
+    path: Assets/Scenes/GameOverScene.unity
+    guid: ec400d4764db50f429e90f0c5b0cb279
   m_configObjects: {}
