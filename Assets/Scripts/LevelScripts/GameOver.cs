@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class GameOverScript : MonoBehaviour, IInteractable
+public class GameOverScript : MonoBehaviour
 {
     // declare text to display
-    public Text gameOverMessage;
+    //public Text gameOverMessage;
     // declare list of strings for game over message choices
     public List<string> gameOverList = new List<string> {
         "Another falls, consumed by Shadow. Will the Sun ever rise?",
@@ -18,31 +19,16 @@ public class GameOverScript : MonoBehaviour, IInteractable
         "You lack tenacity.",
         "Fallen! Fallen! The Light dims!"
     };
-    // declare image/screen we're going to use to fade out
-    public Image blackScreen;
-    // define how long it takes to fade the screen
-    public float fadeToBlackDuration = 3;
+    public TMP_Text gameOverText;
+
     // Create a Random object
     public System.Random myChoice = new System.Random();
 
-    // Start is called before the first frame update
+
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // check here carriage light level
-        // don't need this check every frame
-        // every .5 second should do, so figure that out
-    }
-
-    public void Interact(GameObject interactor)
-    {
-            // FadeToBlack();
-        //    SceneChanger.Instance.ChangeScene("JDG_Dev Scene");
+        // text.text = ChooseMessage();
+        gameOverText.text = ChooseMessage();
     }
 
     // function/method to choose the message from the list
@@ -87,16 +73,6 @@ public class GameOverScript : MonoBehaviour, IInteractable
 }
 
 
-
-
-
-
-
-// how are we tracking the light level
-// carriage light level I imagine, which should dictate overall light on the level
-// maybe milestone 2+ also dictates how far the light goes out from the carriage
-// i.e. how close the baddies can encroach
-
 /*
 // when carriage light level reaches 0
 if (carraigeLight == 0) then
@@ -108,16 +84,5 @@ if (carraigeLight == 0) then
         // baddies
         // music
         // anything ambient
-    // remove all player control
 
-
-    // choose 'game over' text
-    // fade in 'game over' text
-    // fade in any 'game over' music/audio
-
-    // fade out 'game over' text
-    // fade out any remaining 'game over' music/audio
-
-    // return player to main menu (probably a function call)
-}
 */
