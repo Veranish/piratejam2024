@@ -17,7 +17,11 @@ public class GameOverScript : MonoBehaviour
         "Flickering, dying, the last gasp of flame.",
         "Another will take your place.",
         "You lack tenacity.",
-        "Fallen! Fallen! The Light dims!"
+        "Fallen! Fallen! The Light dims!",
+        "The sickness in this world prevails.",
+        "No further, little ember?",
+        "Where is your strenght?",
+        "A step closer to Perpetual Night."
     };
     public TMP_Text gameOverText;
 
@@ -27,7 +31,6 @@ public class GameOverScript : MonoBehaviour
 
     void Start()
     {
-        // text.text = ChooseMessage();
         gameOverText.text = ChooseMessage();
     }
 
@@ -45,44 +48,4 @@ public class GameOverScript : MonoBehaviour
         // return choice
         return actualMessage;
     }
-
-    // function/method to display the game over messaage
-    // currently throws compile erros so commenting out for now
-    /*
-    void DisplayMessage()
-    {
-        // get the message by calling function/method ChooseMessage    *** CURRENTLY DOES NOT WORK ***
-        public string theMessage = ChooseMessage();
-        // draw the message
-        // still need a valid brush and format (no idea yet what these are)
-        // void DrawString(theMessage, System.Drawing.Font JazzCreateBubble, System.Drawing.Brush brush, float 200, float 200, System.Drawing.StringFormat format);
-    }
-
-
-    // function/method to fade to black
-    public void FadeToBlack()
-    {
-        // define color of the new image*(screen)
-        blackScreen.color = Color.black;
-        // no idea what cavans render does, but assume it's setting the alpha here of the color we're setting to 0 so, transparent
-        blackScreen.canvasRenderer.SetAlpha(0.0f);
-        // here it's likely adding to the alpha a bit at a time, during the duration we declared, until it reaches 1 (so alpha is from 0 to 1 here, 0 being transparent, 1 being fully rendered, or not see through at all)
-        blackScreen.CrossFadeAlpha(1.0f, fadeToBlackDuration, false);
-    }
-    */
 }
-
-
-/*
-// when carriage light level reaches 0
-if (carraigeLight == 0) then
-{
-    // fade out the scene
-    // fade out any remaining scene audio
-        // player
-        // carraige
-        // baddies
-        // music
-        // anything ambient
-
-*/
