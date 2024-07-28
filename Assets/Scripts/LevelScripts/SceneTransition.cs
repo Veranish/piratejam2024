@@ -13,7 +13,6 @@ public class SceneTransition : MonoBehaviour
         // if this is game over scene, wait a duration, then FadeToScene Menu
         Scene whatSceneIsThis = SceneManager.GetActiveScene();
 
-        // game over is currently build index 3   probably should change this to it's name, since that wont change
         if (whatSceneIsThis.name == "GameOverScene")
         {
             Invoke("FadeToMenu", howLongToSitAtGamerOver);
@@ -28,10 +27,13 @@ public class SceneTransition : MonoBehaviour
     void Update()
     {
         // right now just looking for F press to test  eventually need other ways to call methods
+        // likely by looking for the scene index, and transitioning to the appropriate scene
         if (Input.GetKey(KeyCode.F))
         {
             FadeToScene(3);
         }
+
+        // if (Input.GetMouseButtonDown(0))
     }
 
     public void FadeToScene(int sceneIndex)
@@ -45,8 +47,10 @@ public class SceneTransition : MonoBehaviour
         FadeToScene(0);
     }
 
+    /*
     public void FadeOutDone ()
     {
         SceneManager.LoadScene(sceneToTransitionTo);
     }
+    */
 }
