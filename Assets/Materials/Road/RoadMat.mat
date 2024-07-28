@@ -47,12 +47,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainNormalHeightTex:
+        m_Texture: {fileID: 2800000, guid: af58a530ad298ab46b8c86ff0d74267a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainNormalRoughTex:
         m_Texture: {fileID: 2800000, guid: e450b502b3ec22a45a400eba8f98a045, type: 3}
         m_Scale: {x: 18.28, y: -4.3}
         m_Offset: {x: 3, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 82c6a1f0b8ae4474d962285655162606, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4346d90c9dbba2648aa776fac6ff1b1d, type: 3}
         m_Scale: {x: 1, y: 0.1}
         m_Offset: {x: 0, y: 0}
     - _MainTex1:
@@ -79,12 +83,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SecondaryNormalHeightTex:
+        m_Texture: {fileID: 2800000, guid: 8f57f545f89f81a4baf30d580262e63f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SecondaryNormalRoughTex:
         m_Texture: {fileID: 2800000, guid: a56cd09b471efd340a36fe6425c17b86, type: 3}
         m_Scale: {x: 0.27, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SecondaryTex:
-        m_Texture: {fileID: 2800000, guid: dd042058d162b4e45a32997767f92830, type: 3}
+        m_Texture: {fileID: 2800000, guid: 002724e3f74ef9344a27368aa6518acb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -100,15 +108,16 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightInfluence: 2.1
+    - _HeightInfluence: 1.8
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseAmount: -0.34
-    - _NoiseScale: 0.05
+    - _NoiseAmount: 0.26
+    - _NoiseScale: 0.14
     - _NormalScale: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _SecondaryHorizontalEdgeFactor: 1
+    - _SecondaryHorizonalOffset: -13.06
+    - _SecondaryHorizontalEdgeFactor: 1.5
     - _SecondaryTextureTiling: 0.125
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0

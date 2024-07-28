@@ -4,18 +4,20 @@ Shader "Custom/HashedBlendShader"
     {
         _Color ("Color", Color) = (1,1,1,1)
         _Metallic ("Metallic", Range(0,1)) = 0.0
-        _Smoothness ("Smoothness Scale", float) = 1
-        _NormalScale ("Normal Scale", float) = 1
-        _MainTex ("Albedo (RGB), Height (A)", 2D) = "white" {}
-        [NoScaleOffset]
-        _MainNormalRoughTex ("Normal (RGB), Roughness (A)", 2D) = "grey" {}
-        [NoScaleOffset]
+        
         [Space(50)]
-        _SecondaryTex ("Secondary Albedo (RGB), Height (A)", 2D) = "white" {}
+        _MainTex ("Albedo (RGB), Smooth (A)", 2D) = "white" {}
         [NoScaleOffset]
-        _SecondaryNormalRoughTex ("Secondary Normal (RGB), Roughness (A)", 2D) = "grey" {}
+        _MainNormalHeightTex ("Normal (RGB), Height (A)", 2D) = "grey" {}
+        [NoScaleOffset]
+
+        [Space(50)]
+        _SecondaryTex ("Secondary Albedo (RGB), Smooth (A)", 2D) = "white" {}
+        [NoScaleOffset]
+        _SecondaryNormalHeightTex ("Secondary Normal (RGB), Height (A)", 2D) = "grey" {}
         _SecondaryTextureTiling ("Secondary Texture Tiling", float) = 1
         _SecondaryHorizontalEdgeFactor ("Edge Coord Range", float) = 0.5
+        _SecondaryHorizonalOffset ("Edge Coord Offset", float) = 0.5
 
         [Space(50)]
         _NoiseScale ("Noise Scale", float) = 1
@@ -40,14 +42,15 @@ Shader "Custom/HashedBlendShader"
         #pragma target 3.0
 
         sampler2D _MainTex;//color + height
-        sampler2D _MainNormalRoughTex;
+        sampler2D _MainNormalHeightTex;
         sampler2D _SecondaryTex;
-        sampler2D _SecondaryNormalRoughTex;
+        sampler2D _SecondaryNormalHeightTex;
 
         half _Metallic;
-        half _Smoothness;
+       
         half _SecondaryHorizontalEdgeFactor;
-        half _NormalScale;
+        float _SecondaryHorizonalOffset;
+      
         half _HeightInfluence;
         half _BlendRange;
         fixed4 _Color;
@@ -74,32 +77,36 @@ Shader "Custom/HashedBlendShader"
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // // Albedo comes from a texture tinted by color
-            fixed4 ColorHeight1 = tex2D (_MainTex, IN.uv_MainTex);
-            fixed4 NormalRough1 = tex2D(_MainNormalRoughTex, IN.uv_MainTex);
+            fixed4 ColorSmooth1 = tex2D (_MainTex, IN.uv_MainTex);
+            fixed4 NormalHeight1 = tex2D(_MainNormalHeightTex, IN.uv_MainTex);
 
-            fixed4 ColorHeight2 = tex2D (_SecondaryTex, IN.worldPos.xz*_SecondaryTextureTiling);
-            fixed4 NormalRough2 = tex2D(_SecondaryNormalRoughTex, IN.worldPos.xz*_SecondaryTextureTiling);
+            fixed4 ColorSmooth2 = tex2D (_SecondaryTex, IN.worldPos.xz*_SecondaryTextureTiling);
+            fixed4 NormalHeight2 = tex2D(_SecondaryNormalHeightTex, IN.worldPos.xz*_SecondaryTextureTiling);
 
             float noiseValue = clamp(SimplexNoiseGrad(IN.worldPos.xz * _NoiseScale), -1, 1)*_NoiseAmount;
 
-            float secondaryHeightInfluence = ColorHeight2.a * _HeightInfluence+noiseValue;
+            float secondaryHeightInfluence = NormalHeight2.a * _HeightInfluence + noiseValue;
 
             float heightComparison = smoothstep(
                 secondaryHeightInfluence-_BlendRange, 
                 secondaryHeightInfluence+_BlendRange, 
-                ColorHeight1.a
+                NormalHeight1.a
             );
 
             float blendValue;
-            blendValue = pow(abs(IN.uv_MainTex.x* - 0.5)*2*_SecondaryHorizontalEdgeFactor, _EdgePower);
+            blendValue = pow(
+                abs(IN.uv_MainTex.x - 0.5 )*2* 
+                _SecondaryHorizontalEdgeFactor, 
+                _EdgePower
+            );
             blendValue = clamp(blendValue + heightComparison * noiseValue, 0, 1);
 
-            o.Normal = lerp(NormalRough1.rgb, NormalRough2.rgb, blendValue) * _NormalScale;
+            o.Normal = lerp(NormalHeight1.rgb, NormalHeight2.rgb, blendValue);
 
             o.Metallic = _Metallic;
-            o.Smoothness = (1 - lerp(NormalRough1.a, NormalRough2.a, blendValue)) * _Smoothness;
-            o.Albedo = _Color * lerp(ColorHeight1.rgb, ColorHeight2.rgb, blendValue);
-
+            o.Smoothness = (1 - lerp(ColorSmooth1.a, ColorSmooth2.a, blendValue));
+            o.Albedo = _Color * lerp(ColorSmooth1.rgb, ColorSmooth2.rgb, blendValue);
+            // o.Albedo = float3(blendValue, blendValue, blendValue);
         }
         ENDCG
     }
