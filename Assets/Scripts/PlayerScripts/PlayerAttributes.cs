@@ -6,7 +6,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 {
     [Header("Light and Lamp properties")]
     public int LightLevel; //Functions as both light and HP.
-    
+
     public Light lampLight; //Should be tied to the Light object in the player's lamp.
 
     [Header("Item and related attributes")]
@@ -46,6 +46,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 
                         interactable.Interact(this.gameObject);
 
+
                         //TODO: Make it check what it's interacting with.
                         //updateLightValue(LampLightCost);
                         //updateLightAesthetic();
@@ -56,7 +57,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
         if(Input.GetMouseButtonUp(1) && canShoot)
         {
             //Fire the lamp!
-            
+
 
         }
     }
@@ -76,7 +77,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
         return false;
     }
 
- 
+
 
     void UpdateLightAesthetic()
     {
@@ -99,7 +100,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
             itemCarried.GetComponent<Rigidbody>().freezeRotation = true;
             itemCarried.GetComponent<Rigidbody>().useGravity = false;
             carryingItem = true;
-            
+
             return true;
         }
         return false;
