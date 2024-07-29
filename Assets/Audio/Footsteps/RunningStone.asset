@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: e60e3e270c99ada48b8da4a3953f3f60, type: 3}
   m_Name: RunningStone
   m_EditorClassIdentifier: Assembly-CSharp::AudioContainer_Random
   Variants:

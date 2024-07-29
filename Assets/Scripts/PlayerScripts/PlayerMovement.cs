@@ -36,12 +36,22 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    public PlayerAudioClips AudioClips;
+    public float FootstepInterval = 0.5f;
+
+    AudioPlayer AudioPlayer;
+
+    AudioPlayHandle RunLoopHandle;
+    AudioPlayHandle FlameLoopHandle;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
         readyToJump = true;
+
+        AudioPlayer = GetComponent<AudioPlayer>();
     }
 
     private void Update()
@@ -62,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+        HandleAudio();
     }
 
     private void MyInput()
@@ -134,5 +145,33 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private void HandleAudio()
+    {
+        if (FlameLoopHandle == null || !FlameLoopHandle.IsPlaying)
+        {
+            FlameLoopHandle = AudioPlayer.PlaySound(AudioClips.StaffFire, 0.25f, true);
+        }
+
+        if (Input.GetButton("Jump"))
+        {
+            FlameLoopHandle.EndLoop();
+        }
+
+        Vector3 VelocityXZ = rb.velocity;
+        VelocityXZ.y = 0;
+
+        if (VelocityXZ.sqrMagnitude > 1 && grounded)
+        {
+            if (RunLoopHandle == null || !RunLoopHandle.IsPlaying)
+            {
+                RunLoopHandle = AudioPlayer.PlaySoundAtInterval(AudioClips.RunningClip, FootstepInterval, 0.25f);
+            }
+        }
+        else if (RunLoopHandle != null && RunLoopHandle.IsPlaying)
+        {
+            RunLoopHandle.Stop();
+        }
     }
 }
