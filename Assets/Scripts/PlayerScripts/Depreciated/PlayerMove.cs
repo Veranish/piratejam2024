@@ -64,7 +64,7 @@ public class PlayerMove : MonoBehaviour
         }
         else if (PlayHandle != null)
         {
-            PlayHandle.Stop = true;
+            PlayHandle.Stop();
             PlayHandle = null;
         }
     }

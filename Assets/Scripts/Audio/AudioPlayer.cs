@@ -1,29 +1,138 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
+using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
+// Little wrapper that manages playback of composite SFX
 public class AudioPlayHandle
 {
-    // Hook to dynamically modify interval after specification
+
+    public AudioPlayHandle(AudioPlayer Player, IAudioContainer Clip, AudioSource Source, float VolumeScale, bool Loop)
+    {
+        m_Player = Player;
+        m_Container = Clip;
+        m_Source = Source;
+        m_SectionIndex = 0;
+
+        SetVolume(VolumeScale);
+        m_ShouldLoop = Loop;
+    }
+
+    ~AudioPlayHandle()
+    {
+        GameObject.Destroy(m_Source);
+    }
+
     public float Interval { get; set; } = 0.0f;
 
-    // Hook to dynamically change volume scale
-    public float VolumeScale { get; set; } = 1.0f;
+    public bool IsPlaying { get { return m_IsPlaying; } }
+    public bool IsLooping { get { return m_Source ? m_Source.loop : false; } }
 
-    // Hook to allow user to end loop
-    public bool Loop { get; set; } = true;
+    public IEnumerator Begin()
+    {
+        m_IsPlaying = true;
 
-    // Hook to allow the user to stop the audio playback 
-    public bool Stop { get; set; } = false;
+        while (m_IsPlaying)
+        {
+            // End the play handle
+            if (m_Container.HasSection(m_SectionIndex))
+            {
+                Stop();
+                break;
+            }
 
-    // Specifies the handle is invalid
-    public bool IsValid { get; set; } = true;
+            AudioClip Clip = m_Container.GetSection(m_SectionIndex);
+            if (Clip == null)
+            {
+                Stop();
+
+                Debug.Log("Encountered null clip in container");
+                break;
+            }
+
+            m_Source.clip = Clip;
+            m_Source.Play();
+
+            if (m_ShouldLoop && m_Container.IsSectionLooping(m_SectionIndex))
+            {
+                m_Source.loop = true;
+                break;
+            }
+            else
+            {
+                m_Source.loop = false;
+                yield return new WaitForSeconds(Clip.length);
+            }
+
+            ++m_SectionIndex;
+        }
+
+        yield break;
+    }
+
+    public IEnumerator BeginInterval()
+    {
+        m_IsPlaying = true;
+
+        while (m_IsPlaying)
+        {
+            AudioClip Clip = m_Container.GetSection(0); // Always play section 0 (container may return different clips)
+            if (Clip == null)
+            {
+                Stop();
+
+                Debug.Log("Encountered null clip in container");
+                yield break;
+            }
+
+            m_Source.clip = Clip;
+            m_Source.Play();
+
+            yield return new WaitForSeconds(Interval);
+        }
+
+        yield break;
+    }
+
+    public void Stop()
+    {
+        m_IsPlaying = false;
+        GameObject.Destroy(m_Source);
+    }
+
+    public void StopImmediate()
+    {
+        m_IsPlaying = false;
+        m_Source.Stop();
+
+        GameObject.Destroy(m_Source);
+    }
+
+    public void EndLoop()
+    {
+        m_Source.loop = false;
+        ++m_SectionIndex;
+
+        m_Player.KickAsync(this);
+    }
+
+    public void SetVolume(float VolumeScale)
+    {
+        m_Source.volume = VolumeScale * m_Player.GlobalVolumeScale;
+    }
+
+    private IAudioContainer m_Container;
+    private AudioSource     m_Source;
+    private AudioPlayer     m_Player;
+    private bool            m_ShouldLoop;
+    private int             m_SectionIndex;
+    private bool            m_IsPlaying;
 }
 
 public class AudioPlayer : MonoBehaviour
 {
     public float GlobalVolumeScale = 1.0f;
-
-    private AudioSource AudioSource;
 
     // Small wrapper to facilitate convenient interface while leveraging single implementation
     class AudioContainer_Wrapper : IAudioContainer
@@ -41,29 +150,31 @@ public class AudioPlayer : MonoBehaviour
 
             return Clip;
         }
-    }
 
-    void Start()
-    {
-        AudioSource = GetComponent<AudioSource>();
-
-        // Need an audio source to play sounds
-        if (!AudioSource)
+        public bool HasSection(int SectionIndex)
         {
-            AudioSource = gameObject.AddComponent<AudioSource>();
+            return SectionIndex == 0;
         }
     }
 
-    public AudioPlayHandle PlaySoundOneShot(AudioClip Clip, float VolumeScale = 1.0f, bool Looping = false)
+
+    public AudioPlayHandle PlaySound(AudioClip Clip, float VolumeScale = 1.0f, bool Looping = false, float IntervalSec = 0.0f)
     {
-        return PlaySoundOneShot(new AudioContainer_Wrapper(Clip), VolumeScale);
+        return PlaySound(new AudioContainer_Wrapper(Clip), VolumeScale, Looping);
     }
 
-    public AudioPlayHandle PlaySoundOneShot(IAudioContainer Container, float VolumeScale = 1.0f, bool Looping = false)
+    public AudioPlayHandle PlaySound(IAudioContainer Container, float VolumeScale = 1.0f, bool Looping = false)
     {
-        AudioPlayHandle Handle = new AudioPlayHandle() { VolumeScale = GlobalVolumeScale * VolumeScale, Loop = Looping };
-        StartCoroutine(PlaySoundOneShot_Internal(Container, Handle));
-        return Handle;
+        if (Container == null)
+        {
+            Debug.Log("Null audio audio container clip supplied by user");
+        }
+
+        var Source = gameObject.AddComponent<AudioSource>();
+
+        var PlayHandle = new AudioPlayHandle(this, Container, Source, VolumeScale, Looping);
+        StartCoroutine(PlayHandle.Begin());
+        return PlayHandle;
     }
 
     public AudioPlayHandle PlaySoundAtInterval(AudioClip Clip, float Interval, float VolumeScale = 1.0f)
@@ -73,54 +184,22 @@ public class AudioPlayer : MonoBehaviour
 
     public AudioPlayHandle PlaySoundAtInterval(IAudioContainer Container, float Interval, float VolumeScale = 1.0f)
     {
-        if (Container.GetNumSections() > 1)
+        if (Container == null)
         {
-            Debug.Log("PlaySoundAtInterval doesn't support composite AudioContainers.");
-            return new AudioPlayHandle() { IsValid = false };
+            Debug.Log("Null audio audio container clip supplied by user");
         }
 
-        AudioPlayHandle Handle = new AudioPlayHandle() { Interval = Interval, VolumeScale = GlobalVolumeScale * VolumeScale };
-        StartCoroutine(PlaySoundAtInterval_Internal(Container, Handle));
-        return Handle;
+        var Source = gameObject.AddComponent<AudioSource>();
+
+        var PlayHandle = new AudioPlayHandle(this, Container, Source, VolumeScale, false);
+        PlayHandle.Interval = Interval;
+
+        StartCoroutine(PlayHandle.BeginInterval());
+        return PlayHandle;
     }
 
-    private IEnumerator PlaySoundOneShot_Internal(IAudioContainer Container, AudioPlayHandle Handle)
+    public void KickAsync(AudioPlayHandle Handle)
     {
-        int SectionIndex = 0;
-
-        while (!Handle.Stop)
-        {
-            AudioClip Clip = Container.GetSection(SectionIndex);
-            AudioSource.PlayOneShot(Clip, Handle.VolumeScale);
-
-            yield return new WaitForSeconds(Clip.length);
-            
-            if (!Container.IsSectionLooping(SectionIndex) || !Handle.Loop)
-            {
-                ++SectionIndex;
-            }
-
-            if (SectionIndex > Container.GetNumSections())
-            {
-                Handle.Stop = true;
-            }
-        }
-
-        Handle.IsValid = false;
-        yield break;
-    }
-
-    private IEnumerator PlaySoundAtInterval_Internal(IAudioContainer Container, AudioPlayHandle Handle)
-    {
-        while (!Handle.Stop)
-        {
-            AudioClip Clip = Container.GetSection(0); // Always play section 0 (container may return different sounds)
-            AudioSource.PlayOneShot(Clip, Handle.VolumeScale);
-
-            yield return new WaitForSeconds(Handle.Interval);
-        }
-
-        Handle.IsValid = false;
-        yield break;
+        StartCoroutine(Handle.Begin());
     }
 }
