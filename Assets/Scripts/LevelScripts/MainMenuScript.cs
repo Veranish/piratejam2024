@@ -14,6 +14,7 @@ public class MainMenuScript : MonoBehaviour
     public void Quit()
     {
         // if player hits the quit button, exit the game
+        // maybe steal fade out, and fade out done from scene transitions to exit elegantly
         Application.Quit();
     }
 }
