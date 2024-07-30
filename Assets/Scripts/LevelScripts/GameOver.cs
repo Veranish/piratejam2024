@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameOverScript : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class GameOverScript : MonoBehaviour
         "A step closer to Perpetual Night."
     };
     public TMP_Text gameOverText;
+    private int delayForMenu = 3;
 
     // Create a Random object
     public System.Random myChoice = new System.Random();
@@ -32,6 +34,7 @@ public class GameOverScript : MonoBehaviour
     void Start()
     {
         gameOverText.text = ChooseMessage();
+        // GoToMenu(delayForMenu);
     }
 
     // function/method to choose the message from the list
@@ -48,4 +51,12 @@ public class GameOverScript : MonoBehaviour
         // return choice
         return actualMessage;
     }
+/*
+    // simple IENumerator to wait a moment and then transition to main menu
+    IEnumerator GoToMenu(int menuDelay)
+    {
+        yield return new WaitForSeconds(menuDelay);
+        SceneManager.LoadScene("MainMenuScene");
+    }
+    */
 }
