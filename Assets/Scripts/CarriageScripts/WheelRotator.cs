@@ -10,7 +10,7 @@ public class WheelRotator : MonoBehaviour
     [Header("Wheel Rotation Config")]
     
 
-    public float wheelRadius = 2f;
+    public float wheelRadius = 1f;
     const float TWOPI = Mathf.PI * 2f;
     public Vector3 forwardAxis = Vector3.forward;
     public Vector3 rightAxis = Vector3.up;
