@@ -1,21 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/AudioContainer_Loop", order = 2)]
-public class AudioContainer_Loop : ScriptableObject, IAudioContainer
+public class AudioContainer_Loop : AudioContainerBase
 {
     public AudioClip Start;
     public AudioClip Loop;
     public AudioClip End;
 
-    public int GetNumSections()
+    public override int GetNumSections()
     {
-        return (Start ? 1 : 0) + (Loop ? 1 : 0) + (End ? 1 : 0);
+        AudioClip[] List = { Start, Loop, End };
+        return List.Count(x => x != null);
     }
 
-    public AudioClip GetSection(int SectionIndex)
+    public override AudioClip GetSection(int SectionIndex)
     {
         if (SectionIndex > 2)
             return null;
@@ -39,7 +41,7 @@ public class AudioContainer_Loop : ScriptableObject, IAudioContainer
         return null;
     }
 
-    public bool IsSectionLooping(int SectionIndex)
+    public override bool IsSectionLooping(int SectionIndex)
     {
         return Loop != null && GetSection(SectionIndex) == Loop;
     }

@@ -4,16 +4,16 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/AudioContainer_Random", order = 1)]
-public class AudioContainer_Random : ScriptableObject, IAudioContainer
+public class AudioContainer_Random : AudioContainerBase
 {
     public List<AudioClip> Variants = new();
 
-    public int GetNumSections()
+    public override int GetNumSections()
     {
         return 1;
     }
 
-    public AudioClip GetSection(int SectionIndex)
+    public override AudioClip GetSection(int SectionIndex)
     {
         if (Variants?.Count == 0)
             return null;
@@ -22,7 +22,7 @@ public class AudioContainer_Random : ScriptableObject, IAudioContainer
         return Variants[index];
     }
 
-    public bool IsSectionLooping(int SectionIndex)
+    public override bool IsSectionLooping(int SectionIndex)
     {
         return false;
     }

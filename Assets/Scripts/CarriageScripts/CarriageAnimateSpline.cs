@@ -50,7 +50,7 @@ public class CarriageAnimateSpline : MonoBehaviour, IInteractable, IDamageable
         }
     }
 
-    public void Damage(int damageToTake)
+    public void Damage(int damageToTake)//Also use this to heal haha, just make the value negative.
     {
         lightLevel -= damageToTake;
     }
