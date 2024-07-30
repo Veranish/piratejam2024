@@ -10,6 +10,8 @@ public class ResourceItem : MonoBehaviour, IInteractable
     public bool interactedBefore = false; // flag to display hint or not
     private DialogueScript dialogueScript; // so we can display hints
 
+    public Recipe[] possibleRecipes; //List of potential recipes. Will be configured in-editor in prefabs.
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +40,7 @@ public class ResourceItem : MonoBehaviour, IInteractable
             {
                 // call display dialogue function passing the description
                 dialogueScript.ShowHint(description);
-                // dialogueScript.StartDialogue();
+                //dialogueScript.StartDialogue();
                 interactedBefore = true;
             }
             if (playerRef.TryPickUpItem(this.gameObject))

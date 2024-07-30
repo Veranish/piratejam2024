@@ -89,6 +89,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
     //Called by a resource being interacted with. Returns true if successful, false if not.
     public bool TryPickUpItem(GameObject newItemGO)
     {
+        Debug.Log("Attempting to carry");
         if (itemCarried == null)
         {
             Debug.Log("Carrying item");
