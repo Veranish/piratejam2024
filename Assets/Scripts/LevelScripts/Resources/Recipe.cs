@@ -4,7 +4,7 @@ using UnityEngine;
 public class Recipe: ScriptableObject
 {
 
-    public string RecipeName;
+    public string recipeName;
     public GameObject itemOne; //Resource Item prefab
     public GameObject itemTwo; //Resource item prefab
     public GameObject resultItem; //Crafted item prefab

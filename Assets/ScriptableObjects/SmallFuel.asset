@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5858693853361d143a98cad23c5b3212, type: 3}
   m_Name: SmallFuel
   m_EditorClassIdentifier: 
-  RecipeName: SmallFuel_1
-  itemOne: {fileID: 8806645534876246823, guid: ef82a8a7203c17c4a9d7a4b1f18ddc17, type: 3}
-  itemTwo: {fileID: 8806645534876246823, guid: ef82a8a7203c17c4a9d7a4b1f18ddc17, type: 3}
+  recipeName: Small_Fuel
+  itemOne: {fileID: 4778363898560508632, guid: b6cb792b65c8ec04893baae1e5f99363, type: 3}
+  itemTwo: {fileID: 4778363898560508632, guid: b6cb792b65c8ec04893baae1e5f99363, type: 3}
   resultItem: {fileID: 587328010308116970, guid: fa661cf6fb02a0a49b85a5692174fe7a, type: 3}

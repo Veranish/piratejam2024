@@ -11,7 +11,7 @@ public class Workbench : MonoBehaviour, IInteractable
     // Start is called before the first frame update
     void Start()
     {
-
+        Recipe[] LoadedRecipes = Resources.LoadAll<Recipe>("ScriptableObjects/");
     }
 
     // Update is called once per frame
@@ -35,14 +35,21 @@ public class Workbench : MonoBehaviour, IInteractable
 
     void CheckRecipe()
     {
-        ResourceItem item1 = leftHopper.GetComponent<ResourceItem>();
-        ResourceItem item2 = rightHopper.GetComponent<ResourceItem>();
+        Debug.Log("Checking for a recipe");
+        ResourceItem item1 = leftHopper.storedItem.GetComponent<ResourceItem>();
+        ResourceItem item2 = rightHopper.storedItem.GetComponent<ResourceItem>();
+
+        Debug.Log(item1.possibleRecipes[0].recipeName);
 
         foreach (Recipe i in item1.possibleRecipes)
         {
-             if (item2 == item1.possibleRecipes[1].itemTwo)
+            Debug.Log("We're in foreach!");
+            Debug.Log(item2.resName);
+            Debug.Log(i.itemTwo.GetComponent<ResourceItem>().resName);
+            if (item2.resName == i.itemTwo.GetComponent<ResourceItem>().resName)
              {
-                Instantiate(i.resultItem, itemDropPoint);
+                Debug.Log("Recipe found, Instantiating");
+                Instantiate(i.resultItem);
              }
         }
     }

@@ -18,6 +18,7 @@ public class ResourceItem : MonoBehaviour, IInteractable
     {
         // grab the dialouge script so we can show hints
         dialogueScript = GameObject.Find("PopupHintPanel").GetComponent<DialogueScript>();
+        
     }
 
     // Update is called once per frame
