@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
+    /*
     public void Play()
     {
         // if player hits the play button, swap to the next scene (iterate from 0 - menu to 1 - first game level)
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    */
 
     public void Quit()
     {

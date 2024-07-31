@@ -12,12 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: 60fd980464d21e241a75b3079f097c89
   - enabled: 1
-    path: Assets/Scenes/Veranish_DevScene.unity
-    guid: eff6b9976778e6940b36afa0d973d810
+    path: Assets/Scenes/GameOpeningScene.unity
+    guid: c0cccad2d4c133645bad333347af2bd5
   - enabled: 1
-    path: Assets/Scenes/JDG_DevScene.unity
-    guid: 93031454d88cbe94b98cd907f36bb788
+    path: Assets/Scenes/Level_1.unity
+    guid: c3fff9d90ca53b44dbcd5ae20a99d7ee
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: ec400d4764db50f429e90f0c5b0cb279
+  - enabled: 0
+    path: Assets/Scenes/Veranish_DevScene.unity
+    guid: eff6b9976778e6940b36afa0d973d810
+  - enabled: 0
+    path: Assets/Scenes/JDG_DevScene.unity
+    guid: 93031454d88cbe94b98cd907f36bb788
   m_configObjects: {}

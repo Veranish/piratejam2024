@@ -5,55 +5,64 @@ using System.Collections;
 public class SceneTransition : MonoBehaviour
 {
     public Animator animator;
-    private int sceneToTransitionTo;
-    public float howLongToSitAtGamerOver = 10f;
+    // public int sceneToTransitionTo;
+    public string sceneToTransitionTo;
+    private float howLongToSitAtGamerOver = 10f;
+    private Scene whatSceneIsThis;
+    private int sceneBuildIndex;
+    private string thisSceneName;
 
     void Start()
     {
-        // if this is game over scene, wait a duration, then FadeToScene Menu
-        Scene whatSceneIsThis = SceneManager.GetActiveScene();
-
-        // switch to decide what scene this is, and which we should be transitioning to
-
-        if (whatSceneIsThis.name == "GameOverScene")
-        {
-            Invoke("FadeToMenu", howLongToSitAtGamerOver);
-        }
-
-        Debug.Log($"We're currently on the following scene: {whatSceneIsThis.name}");
-        Debug.Log($"We're currently on scene build index: {whatSceneIsThis.buildIndex}");
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        // right now just looking for F press to test  eventually need other ways to call methods
-        // likely by looking for the scene index, and transitioning to the appropriate scene
-        // probably don't need an update here, just calls to fade functions
-        if (Input.GetKey(KeyCode.F))
-        {
-            FadeToScene(3);
-        }
 
-        // if (Input.GetMouseButtonDown(0))
     }
 
-    public void FadeToScene(int sceneIndex)
+    public void FadeToScene()
     {
-        sceneToTransitionTo = sceneIndex;
         animator.SetTrigger("FadeOutTrigger");
     }
 
+/*
     public void FadeToMenu()
     {
         FadeToScene(0);
     }
+    */
 
-
-    public void FadeOutDone ()
+    public void FadeOutDone () // for some reason I can't get sceneToTransitionTo to retain it's value  swapping to a few functions for now to remedy
     {
+        whatSceneIsThis = SceneManager.GetActiveScene();
+        Debug.Log($"We're currently on the following scene: {whatSceneIsThis.name}");
+        Debug.Log($"We're currently on scene build index: {whatSceneIsThis.buildIndex}");
+        sceneBuildIndex = whatSceneIsThis.buildIndex;
+        thisSceneName = whatSceneIsThis.name;
+
+        // based on what scene we're on, transition to the next one
+        switch (thisSceneName)
+        {
+            case "MainMenuScene":
+                sceneToTransitionTo = "GameOpeningScene";
+                Debug.Log($"Scene we should be swapping to: {sceneToTransitionTo}");
+                break;
+            case "GameOpeningScene":
+                sceneToTransitionTo = "Level_1";
+                break;
+            case "Level_1":
+                sceneToTransitionTo = "GameOverScene";
+                break;
+            case "GameOverScene":
+                sceneToTransitionTo = "MainMenuScene";
+                break;
+            default:
+                Debug.Log("Couldn't figure out what scene to transition to");
+                break;
+        }
         SceneManager.LoadScene(sceneToTransitionTo);
     }
-
 }

@@ -188,8 +188,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4282611072
+  m_fontColor: {r: 0.5, g: 0.45697817, b: 0.26179245, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -206,13 +206,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 0
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -320,7 +320,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.46666667}
     m_PressedColor: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -339,9 +339,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 974547744}
-        m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 974547745}
+        m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
+        m_MethodName: FadeToScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -446,6 +446,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c22bbc101daae54aa4f368832fb7162, type: 3}
+--- !u!95 &515236723 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3359957082639022492, guid: 0c22bbc101daae54aa4f368832fb7162, type: 3}
+  m_PrefabInstance: {fileID: 515236722}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &655788870
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 974547743}
   - component: {fileID: 974547744}
+  - component: {fileID: 974547745}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -658,6 +664,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c0f6f2b82808e4bae25f9920d9de75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &974547745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974547742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b821956a83a36b346beb3c4755d020df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 515236723}
 --- !u!1 &1040724540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,8 +1143,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4281171337
+  m_fontColor: {r: 0.5377358, g: 0.49187136, b: 0.17501779, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1142,13 +1161,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 0
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1249,7 +1268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Super Cool Game Name
+  m_text: Lamplighter's Duty
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fdae4af11c57bb446946e13a1f609189, type: 2}
   m_sharedMaterial: {fileID: 1955944841143802948, guid: fdae4af11c57bb446946e13a1f609189, type: 2}
@@ -1258,8 +1277,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1744830463
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.40392157}
+    rgba: 1732554954
+  m_fontColor: {r: 0.7924528, g: 0.6885306, b: 0.26539695, a: 0.40392157}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1282,7 +1301,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 32
+  m_fontStyle: 33
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535

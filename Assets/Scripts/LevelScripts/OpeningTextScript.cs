@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class IntroFadeIn : MonoBehaviour
 {
+    public Animator animator;
     private TMP_Text textToUse;
     private float howLongToFade = 1f;
     private float newAlpha = 0.5f;
@@ -87,7 +88,8 @@ public class IntroFadeIn : MonoBehaviour
                 textToUse.color = new Color(textToUse.color.r, textToUse.color.g, textToUse.color.b, newAlpha);
             }
         }
+        // when we're done, transition to main game scene
+        yield return new WaitForSeconds(1); // slight delay
+        animator.SetTrigger("FadeOutTrigger");
     }
-    // when we're done, transition to main game scene
-
 }
