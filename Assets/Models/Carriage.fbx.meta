@@ -7,90 +7,160 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 08 - Default
-    second: {fileID: 2100000, guid: ed2c610e8fcfc564c8419d101d0f7547, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 09 - Default
-    second: {fileID: 2100000, guid: 5f171a72bef071e4b8c8a45254820b00, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: BadgeFlower
-    second: {fileID: 2100000, guid: 3a2b54b9e44f44147822289bf6daac09, type: 2}
+    second: {fileID: 2100000, guid: ae915213d3b05a2429b700e5612c6fe2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BadgeFlowerCenter
-    second: {fileID: 2100000, guid: 9833c99cb4b0a4c4cb422b5e4276c27e, type: 2}
+    second: {fileID: 2100000, guid: 35fbf724832dfe24cb9217481e060cbd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BadgeGold
-    second: {fileID: 2100000, guid: f072df07edd6a324bbbba45b58959397, type: 2}
+    second: {fileID: 2100000, guid: 618bf20ff4106034a81ee4f3c747ee53, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Carriage iron
-    second: {fileID: 2100000, guid: 415f4905ea05ea6408f51edc8b925954, type: 2}
+      name: Book cover
+    second: {fileID: 2100000, guid: 6e8d04a84043fe34986b721e39fd3c19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Book paper
+    second: {fileID: 2100000, guid: 070987f7aa463de439730dac1c26c7ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CandleFlame
+    second: {fileID: 2100000, guid: 957224bbb60bcb64c94de4aa8f875c66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CandleWax
+    second: {fileID: 2100000, guid: 070ed805bdfe3504b930552bf9922b3d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Carriage chassis
+    second: {fileID: 2100000, guid: a7be855e3d53adb4ea42373d1204d2e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Carriage wheel
+    second: {fileID: 2100000, guid: cdb7bb160106a6f45bbb171609a5796d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CarriageBundle
+    second: {fileID: 2100000, guid: 479585e59c2378a4dadbb22fe3518f5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CoalCold
+    second: {fileID: 2100000, guid: 697548f5b986cac4a99af24617fcde5e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CoalHot
+    second: {fileID: 2100000, guid: d01bdffeab307424e9c1b37ffed2730d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: DeskMaterial_1
-    second: {fileID: 2100000, guid: 228394441db84b44690389e5e7b96c36, type: 2}
+    second: {fileID: 2100000, guid: 65e8a8844024ac64aacc01eac6a6a4e9, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: DeskMaterial_2
-    second: {fileID: 2100000, guid: ed06bdfb49696c7488843318b82526de, type: 2}
+    second: {fileID: 2100000, guid: e281198fbfd6a6f41b4953edd10b648e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: DeskMaterial_3
-    second: {fileID: 2100000, guid: 147071a1443c49546acbeead479cf1a7, type: 2}
+    second: {fileID: 2100000, guid: 863d84881d6e2f548b4b42e66be8677a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Fire+Ashes+BurntWood
-    second: {fileID: 2100000, guid: 27404eda99f956a4dab75270d318df38, type: 2}
+      name: EmberWood
+    second: {fileID: 2100000, guid: 6a03dd7d6dfa3a84bb427119f8755337, type: 2}
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Flame.001
-    second: {fileID: 2100000, guid: f39713e3946b34d4ca08ffb81bb205a5, type: 2}
+      name: 1
+    second: {fileID: 2800000, guid: 4b982e8f80313064d9dc010743334a16, type: 3}
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: GWC Wagon Wheel 01
-    second: {fileID: 2100000, guid: 940c232a819775947a05060e5f337817, type: 2}
+      name: GWC Wagon Wheel 01_BaseColor
+    second: {fileID: 2800000, guid: 128fbeeaa3693f541a4bdda1d532db23, type: 3}
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Procedural Coal
-    second: {fileID: 2100000, guid: af5a9eae196b4ba488b9cf223e3e8891, type: 2}
+      name: GWC Wagon Wheel 01_Metallic
+    second: {fileID: 2800000, guid: 3560ac44952741840b9041abdac8dfbd, type: 3}
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Very hot coal
-    second: {fileID: 2100000, guid: ed9b44366c71e8e4da1119e5f6d8efc1, type: 2}
+      name: GWC Wagon Wheel 01_Normal
+    second: {fileID: 2800000, guid: f06fa6fa8bc59544f84c9de6c4a2f89c, type: 3}
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: candles.001
-    second: {fileID: 2100000, guid: 415f4905ea05ea6408f51edc8b925954, type: 2}
+      name: Wood066_2K-JPG_NormalGL
+    second: {fileID: 2800000, guid: 7988e931bf622da46949ea3f11890506, type: 3}
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: pot.001
-    second: {fileID: 2100000, guid: 9c7f00197d06ce147a5803b3cf46101c, type: 2}
+      name: coal_Normal
+    second: {fileID: 2800000, guid: b10a2a30b483d9246b4e4528910aee75, type: 3}
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: towel
-    second: {fileID: 2100000, guid: 3f8d8d22159e57441a1e304a037ba3b4, type: 2}
+      name: coal_color
+    second: {fileID: 2800000, guid: bf27967ff095fef4bb3dce2e4868394b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: coal_roughness
+    second: {fileID: 2800000, guid: 5bee322dc2ae4e34483b0cea49f84f34, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: flame_1038
+    second: {fileID: 2800000, guid: 3de79c21dfd695a459beb45b6e9090c2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: jkrss_08 - Default_BaseColor
+    second: {fileID: 2800000, guid: 7dd0267dcff1bab4593d04f241a64ff3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: jkrss_08 - Default_Normal
+    second: {fileID: 2800000, guid: b6b24fa40e13c014098e89a138df4b37, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: jkrss_08 - Default_Roughness
+    second: {fileID: 2800000, guid: d017e8a328da0784b9045f7866db4497, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: jkrss_09 - Default_BaseColor
+    second: {fileID: 2800000, guid: 8b3e492a47a4d83469970bc6033bc85a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: jkrss_09 - Default_Normal
+    second: {fileID: 2800000, guid: 2a16c5d8a8a0a3f4badd500bd4e2b02e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: jkrss_09 - Default_Roughness
+    second: {fileID: 2800000, guid: 60158fbddae5fae45a9f1106e3d3d90e, type: 3}
   materials:
-    materialImportMode: 1
+    materialImportMode: 2
     materialName: 3
     materialSearch: 1
     materialLocation: 1
