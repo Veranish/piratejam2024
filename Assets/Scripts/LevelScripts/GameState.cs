@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
+    public Animator animator;
     public GameObject playerRef;
     public GameObject carriageRef;
     public GameObject shadowPrefab;
     // Start is called before the first frame update
-    public ShadowScript[] ShadowList; // List of shadows. 
+    public ShadowScript[] ShadowList; // List of shadows.
     public Transform[] spawnPoints;
     public float spawnTimer; //How long between spawns
     private float timeTillSpawn; //Used to track how much time until the next spawn (actively changes)
@@ -30,6 +31,10 @@ public class GameState : MonoBehaviour
             timeTillSpawn = spawnTimer; //Reset the timer
             Debug.Log("Spawning Shadow!");
         }
+        if (Input.GetKey(KeyCode.F))
+        {
+            GameOver();
+        }
     }
 
     void SpawnShadows()
@@ -47,7 +52,8 @@ public class GameState : MonoBehaviour
 
     public void GameOver()
     {
-
+        // fade to game over message
+        animator.SetTrigger("FadeOutTrigger");
     }
 
     void lampLit(int id) //lamps when lit will report to the gamestate theird ID, so final tally can be kept.
@@ -58,8 +64,8 @@ public class GameState : MonoBehaviour
     int checkLights()//After carriage arrives, check if all lights are lit. If not, detract from total light value. Returns count of unlit lamps.
     {
         int count = 0;
-        foreach (var l in litLamps) 
-        { 
+        foreach (var l in litLamps)
+        {
             if(l == false)
             { count++; }
         }

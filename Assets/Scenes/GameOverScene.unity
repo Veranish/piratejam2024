@@ -326,6 +326,7 @@ MonoBehaviour:
   - Another will take your place.
   - You lack tenacity.
   - Fallen! Fallen! The Light dims!
+  animator: {fileID: 1893357874}
   gameOverText: {fileID: 1863155647}
 --- !u!4 &947257246
 Transform:
@@ -351,7 +352,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 974547743}
-  - component: {fileID: 974547744}
   m_Layer: 0
   m_Name: GameOver
   m_TagString: Untagged
@@ -375,27 +375,6 @@ Transform:
   - {fileID: 1040724541}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &974547744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 974547742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45c7828d540be764b87a8626a15b1039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOverList:
-  - Another falls, consumed by Shadow. Will the Sun ever rise?
-  - What shallow Faith.
-  - The Lantern, cracked. The Source, ravaged. Who will light the path?
-  - Flickering, dying, the last gasp of flame.
-  - Another will take your place.
-  - You lack tenacity.
-  - Fallen! Fallen! The Light dims!
-  gameOverText: {fileID: 0}
 --- !u!1 &1040724540
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,7 +712,6 @@ GameObject:
   - component: {fileID: 1863155646}
   - component: {fileID: 1863155648}
   - component: {fileID: 1863155647}
-  - component: {fileID: 1863155649}
   m_Layer: 0
   m_Name: GameOverText
   m_TagString: Untagged
@@ -857,21 +835,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863155645}
   m_CullTransparentMesh: 1
---- !u!114 &1863155649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!95 &1893357874 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3359957082639022492, guid: 0c22bbc101daae54aa4f368832fb7162, type: 3}
+  m_PrefabInstance: {fileID: 1194295187}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863155645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 087ac5be31eafd747a2bc0a7427a8b80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textMeshPro: {fileID: 0}
-  typingSpeed: 0.05
-  typewriterDone: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

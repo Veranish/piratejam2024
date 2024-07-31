@@ -24,6 +24,7 @@ public class GameOverScript : MonoBehaviour
         "Where is your strenght?",
         "A step closer to Perpetual Night."
     };
+    public Animator animator;
     public TMP_Text gameOverText;
     private int delayForMenu = 3;
 
@@ -34,7 +35,8 @@ public class GameOverScript : MonoBehaviour
     void Start()
     {
         gameOverText.text = ChooseMessage();
-        // GoToMenu(delayForMenu);
+        // pause then start transition
+        StartCoroutine(GoToMenu(delayForMenu));
     }
 
     // function/method to choose the message from the list
@@ -51,12 +53,11 @@ public class GameOverScript : MonoBehaviour
         // return choice
         return actualMessage;
     }
-/*
+
     // simple IENumerator to wait a moment and then transition to main menu
     IEnumerator GoToMenu(int menuDelay)
     {
         yield return new WaitForSeconds(menuDelay);
-        SceneManager.LoadScene("MainMenuScene");
+        animator.SetTrigger("FadeOutTrigger");
     }
-    */
 }

@@ -5,35 +5,16 @@ using System.Collections;
 public class SceneTransition : MonoBehaviour
 {
     public Animator animator;
-    // public int sceneToTransitionTo;
     public string sceneToTransitionTo;
     private float howLongToSitAtGamerOver = 10f;
     private Scene whatSceneIsThis;
     private int sceneBuildIndex;
     private string thisSceneName;
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void FadeToScene()
     {
         animator.SetTrigger("FadeOutTrigger");
     }
-
-/*
-    public void FadeToMenu()
-    {
-        FadeToScene(0);
-    }
-    */
 
     public void FadeOutDone () // for some reason I can't get sceneToTransitionTo to retain it's value  swapping to a few functions for now to remedy
     {
