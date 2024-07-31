@@ -6,8 +6,12 @@ public class GameState : MonoBehaviour
 {
     public GameObject playerRef;
     public GameObject carriageRef;
+    public GameObject shadowPrefab;
     // Start is called before the first frame update
     public ShadowScript[] ShadowList; // List of shadows. 
+    public Transform[] spawnPoints;
+    public float spawnTimer; //How long between spawns
+    private float timeTillSpawn; //Used to track how much time until the next spawn (actively changes)
 
     public bool[] litLamps; //Keeps track of how many lamps are lit.
 
@@ -19,13 +23,20 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timeTillSpawn -= Time.deltaTime;
+        if(timeTillSpawn < 0.0f)
+        {
+            SpawnShadows();//Spawn the shadow
+            timeTillSpawn = spawnTimer; //Reset the timer
+            Debug.Log("Spawning Shadow!");
+        }
     }
 
     void SpawnShadows()
     {
-        //Iterate through a list of spawns, find closest to the player?
-        //Or carriage itself has shadows that spawn along it? 
+        Transform spawnT = spawnPoints[Random.Range(0, spawnPoints.Length - 1)];
+        GameObject inst = Instantiate(shadowPrefab, spawnT);
+        inst.GetComponent<ShadowScript>().NewTarget(carriageRef.transform);
     }
 
     public void CarriageArrived()

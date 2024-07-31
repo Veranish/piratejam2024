@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerAttributes : MonoBehaviour, IDamageable
 {
     [Header("Light and Lamp properties")]
-    public int LightLevel; //Functions as both light and HP.
+    public int lightLevel; //Functions as both light and HP.
 
     public Light lampLight; //Should be tied to the Light object in the player's lamp.
-
+    public Light fireLight; //Tied to the player's spotlight for beam purposes
     [Header("Item and related attributes")]
     bool carryingItem;
     public GameObject itemCarried; // The resource that the player is carrying.
@@ -16,6 +16,8 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 
     [Header("Abilities")]
     bool canShoot; //if true, player is able to shoot.
+    public List<ShadowScript> shadowsInRange = new List<ShadowScript>();
+    public int damagePerSecond; //Beam damage per second.
 
     // Start is called before the first frame update
     void Start()
@@ -57,14 +59,52 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
         if(Input.GetMouseButtonUp(1) && canShoot)
         {
             //Fire the lamp!
-
+            StartCoroutine(DamageOverTime());
 
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<ShadowScript>(out ShadowScript shadow))
+        {
+            shadowsInRange.Add(shadow);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<ShadowScript>(out ShadowScript shadow))
+        {
+            shadowsInRange.Remove(shadow);
+        }
+    }
+
+    private void CleanUpShadowList()
+    {
+        foreach (var shadow in shadowsInRange)
+        {
+            if(shadow == null)
+            {
+                shadowsInRange.Remove(shadow);
+            }
+        }
+    }
+
+    IEnumerator DamageOverTime()
+    {
+        foreach (var shadow in shadowsInRange)
+        {
+            shadow.Damage(damagePerSecond);
+        }
+        CleanUpShadowList();
+        yield return new WaitForSeconds(1f);
+        
+    }
+
     public void Damage(int damageToDeal)
     {
-        LightLevel -= damageToDeal;
+        lightLevel -= damageToDeal;
         UpdateLightAesthetic();
         DeathCheck();
         //Debug.Log("Hurt! For: " + damageToDeal);
@@ -72,7 +112,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 
     bool DeathCheck() //Returns true if light level is at death levels
     {
-        if(LightLevel<= 0)
+        if(lightLevel<= 0)
         { return true; }
         return false;
     }
@@ -81,9 +121,9 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 
     void UpdateLightAesthetic()
     {
-        lampLight.intensity = (float)LightLevel / 18; //divided by 20 due to 20 being the max, so, normalized.
-        if(LightLevel < 10) { lampLight.color = Color.red; }
-        else if(LightLevel > 10) { lampLight.color = Color.yellow; }
+        lampLight.intensity = (float)lightLevel / 18; //divided by 20 due to 20 being the max, so, normalized.
+        if(lightLevel < 10) { lampLight.color = Color.red; }
+        else if(lightLevel > 10) { lampLight.color = Color.yellow; }
     }
 
     //Called by a resource being interacted with. Returns true if successful, false if not.

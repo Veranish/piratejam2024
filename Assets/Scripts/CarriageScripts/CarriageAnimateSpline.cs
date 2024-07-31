@@ -13,6 +13,7 @@ public class CarriageAnimateSpline : MonoBehaviour, IInteractable, IDamageable
 
     public int lightLevel;
     public int lightMax = 100;
+    public GameState myGameState;
 
     void Start()
     {
@@ -21,7 +22,10 @@ public class CarriageAnimateSpline : MonoBehaviour, IInteractable, IDamageable
 
     void Update()
     {
-
+        if(mySplineA.NormalizedTime > 0.95)
+        {
+            Debug.Log("Carriage made it to the end!");
+        }
     }
 
     void StartMove()

@@ -20,7 +20,7 @@ public class ShadowScript : MonoBehaviour, IDamageable
     void Update()
     {
         
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed);
+        transform.position = Vector3.MoveTowards(transform.position, target.position, speed*Time.deltaTime);
        
     }
 
@@ -34,7 +34,10 @@ public class ShadowScript : MonoBehaviour, IDamageable
     public void Damage(int damageToTake)
     {
         hp -= damageToTake;
-        CheckDeath();
+        if(CheckDeath())
+        {
+            Destroy(this);
+        }
         isAttacking = true;
         //Todo: Target the player
     }
