@@ -97,7 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resName: Cedar_Wood
-  description: CAKE DESCRIPTION NEEDED
+  description: The distinct scent of cedar has pulled you, beckoning, the promise
+    of Light. You must scavenge from the ground like an animal. Oh for an axe!
   prefab: {fileID: 4778363898560508632}
   interactedBefore: 0
   possibleRecipes:
