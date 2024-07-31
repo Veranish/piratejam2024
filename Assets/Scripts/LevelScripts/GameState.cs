@@ -41,6 +41,7 @@ public class GameState : MonoBehaviour
 
     public void CarriageArrived()
     {
+        //Calculate how many lit lanterns there are for final score.
 
     }
 

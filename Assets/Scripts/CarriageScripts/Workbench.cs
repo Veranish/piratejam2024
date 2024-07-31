@@ -50,6 +50,8 @@ public class Workbench : MonoBehaviour, IInteractable
              {
                 Debug.Log("Recipe found, Instantiating");
                 Instantiate(i.resultItem);
+                Destroy(item1.gameObject);
+                Destroy(item2.gameObject);
              }
         }
     }

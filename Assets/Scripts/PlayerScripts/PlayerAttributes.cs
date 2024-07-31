@@ -25,6 +25,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
         canShoot = true;
         UpdateLightAesthetic();
         carryingItem = false;
+        fireLight.intensity = 0;
     }
 
     // Update is called once per frame
@@ -56,10 +57,19 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
                 }
             }
         }
-        if(Input.GetMouseButtonUp(1) && canShoot)
+        if(Input.GetMouseButtonDown(1) && canShoot)
         {
             //Fire the lamp!
+            Debug.Log("Firing!");
             StartCoroutine(DamageOverTime());
+
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            //Fire the lamp!
+
+            fireLight.intensity = 0;
+            StopCoroutine(DamageOverTime());
 
         }
     }
@@ -93,6 +103,8 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 
     IEnumerator DamageOverTime()
     {
+        Debug.Log("DamageOverTime fired!");
+        fireLight.intensity = 85;
         foreach (var shadow in shadowsInRange)
         {
             shadow.Damage(damagePerSecond);

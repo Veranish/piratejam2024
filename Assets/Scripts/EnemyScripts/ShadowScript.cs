@@ -8,11 +8,11 @@ public class ShadowScript : MonoBehaviour, IDamageable
     public bool isAttacking;
     public Transform target;
     public int speed;
+    public int damage;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Call up to the GameState to find where to go
 
     }
 
@@ -21,7 +21,21 @@ public class ShadowScript : MonoBehaviour, IDamageable
     {
         
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed*Time.deltaTime);
+        if(transform.position.y < 0.5f || transform.position.y > 30)
+        {
+            transform.position = new Vector3(transform.position.x, 1.3f, transform.position.z);
+        }
        
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<CarriageAnimateSpline>(out CarriageAnimateSpline carriage))
+        {
+            Debug.Log("Carriage damage from Shadow! Destroying self");
+            carriage.Damage(damage);
+            Destroy(this.gameObject);
+        }
     }
 
     
@@ -36,7 +50,7 @@ public class ShadowScript : MonoBehaviour, IDamageable
         hp -= damageToTake;
         if(CheckDeath())
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         isAttacking = true;
         //Todo: Target the player
@@ -45,7 +59,8 @@ public class ShadowScript : MonoBehaviour, IDamageable
     public bool CheckDeath()
     {
         if (hp < 0) 
-        { 
+        {
+            Debug.Log("Shadow killed!");
             return true;
             
         }
