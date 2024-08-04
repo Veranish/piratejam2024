@@ -116,7 +116,7 @@ Material:
     - _NormalScale: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _SecondaryHorizonalOffset: -13.06
+    - _SecondaryHorizonalOffset: -0.5
     - _SecondaryHorizontalEdgeFactor: 1.5
     - _SecondaryTextureTiling: 0.125
     - _Smoothness: 1
