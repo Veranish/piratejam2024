@@ -32,6 +32,8 @@ public class IntroFadeIn : MonoBehaviour
         openingTextBoxes[5] = GameObject.Find("GameOpeningText_6");
         openingTextBoxes[6] = GameObject.Find("GameOpeningText_7");
         StartCoroutine(FadeText(delayBeforeStart, openingTextBoxes, howLongToFade, timeBetweenFadeFrames));
+        // lock the cursor
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()

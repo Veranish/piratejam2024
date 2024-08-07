@@ -5,6 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
+    private void Start()
+    {
+        // make sure we give the cursor back
+        Cursor.lockState = CursorLockMode.None;
+        // but lock it to the screen (do we want this??)
+        Cursor.lockState = CursorLockMode.Confined;
+
+    }
+
+
     /*
     public void Play()
     {
